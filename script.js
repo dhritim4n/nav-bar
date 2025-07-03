@@ -26,7 +26,6 @@ function handleSearchButtonClick(searchButton, searchBox) {
 
   searchBox.classList.add("transition-all", "duration-500", "transform", ...hideClasses);
   
-  // Use requestAnimationFrame to ensure styles are registered before hiding
   requestAnimationFrame(() => {
     searchBox.classList.add("hidden");
   });
@@ -35,7 +34,6 @@ function handleSearchButtonClick(searchButton, searchBox) {
     const isHidden = searchBox.classList.contains("hidden");
 
     if (isHidden) {
-      // Remove hidden, then reflow to apply animations
       searchBox.classList.remove("hidden");
       void searchBox.offsetWidth;
 
