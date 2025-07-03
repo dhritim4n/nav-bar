@@ -24,33 +24,34 @@ function handleSearchButtonClick(searchButton, searchBox) {
   const hideClasses = ["opacity-0", "translate-x-3", "scale-95"];
 
 
-  searchBox.classList.add("transition-all", "duration-300", "transform");
+  searchBox.classList.add("transition-all", "duration-500", "transform", ...hideClasses);
+  
+  // Use requestAnimationFrame to ensure styles are registered before hiding
+  requestAnimationFrame(() => {
+    searchBox.classList.add("hidden");
+  });
 
   searchButton.addEventListener("click", () => {
     const isHidden = searchBox.classList.contains("hidden");
 
     if (isHidden) {
-
+      // Remove hidden, then reflow to apply animations
       searchBox.classList.remove("hidden");
-      searchBox.classList.add(...hideClasses); 
-
-
       void searchBox.offsetWidth;
-
 
       searchBox.classList.remove(...hideClasses);
       searchBox.classList.add(...showClasses);
     } else {
-
       searchBox.classList.remove(...showClasses);
       searchBox.classList.add(...hideClasses);
 
       setTimeout(() => {
         searchBox.classList.add("hidden");
-      }, 500);
+      }, 300);
     }
   });
 }
+
 
 
 function changeVisibility(button, listItems) {
