@@ -1,4 +1,5 @@
 # Responsive Navbar with Search Bar
+deployed link:- https://dhritim4n.github.io/nav-bar/
 
 Technologies Used
 - **HTML5**
