@@ -2,8 +2,9 @@ const hamburgerButton = document.getElementById("hamburgerButton");
 const navItemsTop = document.getElementById("navItemsTop");
 const sideBar = document.getElementById("sideBar");
 const hamburgerCloseButton = document.getElementById("hamburgerCloseButton");
+const searchButton = document.getElementById("searchButton");
+const searchBox = document.getElementById("searchBox");
 
-// Run on load and resize
 window.addEventListener("DOMContentLoaded", () => {
   changeVisibility(hamburgerButton, navItemsTop);
   handleActiveNavItem();
@@ -16,6 +17,41 @@ window.addEventListener("resize", () => {
 // Hamburger menu handlers
 handleHamburgerButtonClick(hamburgerButton, sideBar);
 handleHamburgerButtonClick(hamburgerCloseButton, sideBar);
+handleSearchButtonClick(searchButton, searchBox);
+
+function handleSearchButtonClick(searchButton, searchBox) {
+  const showClasses = ["opacity-100", "translate-x-0", "scale-100"];
+  const hideClasses = ["opacity-0", "translate-x-3", "scale-95"];
+
+
+  searchBox.classList.add("transition-all", "duration-300", "transform");
+
+  searchButton.addEventListener("click", () => {
+    const isHidden = searchBox.classList.contains("hidden");
+
+    if (isHidden) {
+
+      searchBox.classList.remove("hidden");
+      searchBox.classList.add(...hideClasses); 
+
+
+      void searchBox.offsetWidth;
+
+
+      searchBox.classList.remove(...hideClasses);
+      searchBox.classList.add(...showClasses);
+    } else {
+
+      searchBox.classList.remove(...showClasses);
+      searchBox.classList.add(...hideClasses);
+
+      setTimeout(() => {
+        searchBox.classList.add("hidden");
+      }, 500);
+    }
+  });
+}
+
 
 function changeVisibility(button, listItems) {
   if (window.innerWidth < 768) {
